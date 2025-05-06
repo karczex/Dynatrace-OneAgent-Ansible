@@ -1,5 +1,7 @@
 name: Commit date to master
-on: push
+on:
+  release:
+    types: [published]
 jobs:
   date:
     runs-on: ubuntu-latest
