@@ -14,9 +14,8 @@
 
 name: "Build, test and publish"
 on:
-  push:
-    tags:
-      - "v*.*.*"
+  release:
+    types: [published]
 
 jobs:
   build-test-and-publish:
