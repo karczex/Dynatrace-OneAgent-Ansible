@@ -37,6 +37,7 @@ jobs:
       - name: Run component tests
         uses: ./.github/actions/run-component-tests
   publish:
+    needs: build-and-test
     uses: ansible/team-devtools/.github/workflows/release_collection.yml@main
     with:
       environment: release
