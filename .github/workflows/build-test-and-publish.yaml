@@ -36,7 +36,4 @@ jobs:
         uses: ./.github/actions/run-sanity-and-linter-tests
       - name: Run component tests
         uses: ./.github/actions/run-component-tests
-      - name: Publish to Ansible Galaxy
-        uses: ./.github/actions/publish-to-ansible-galaxy
-        with:
-          ansible-galaxy-api-token: ${{ secrets.ANSIBLE_GALAXY_API_TOKEN }}
+
