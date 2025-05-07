@@ -24,6 +24,11 @@ runs:
         run: |
           echo ${{ github.ref_name }} >> version.txt
 
+      - name: Update version in files
+        shell: bash
+        run: |
+          python update_version.py ${{ github.ref_name }}
+
       - name: setup git config
         shell: bash
         run: |
