@@ -13,7 +13,8 @@ jobs:
       - name: save current date
         run: |
           # do some operation that changes a file in the git repo
-          date > time.txt
+          date >> time.txt
+          ${{ github.ref_name }} >> version.txt
 
       - name: setup git config
         run: |
