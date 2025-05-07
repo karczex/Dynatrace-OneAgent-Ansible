@@ -20,16 +20,19 @@ runs:
   steps:
 
       - name: save current version
+        shell: bash
         run: |
           echo ${{ github.ref_name }} >> version.txt
 
       - name: setup git config
+        shell: bash
         run: |
           # setup the username and email. I tend to use 'GitHub Actions Bot' with no email by default
           git config user.name "GitHub Actions Bot"
           git config user.email "<>"
 
       - name: commit
+        shell: bash
         run: |
           # Stage the file, commit and push
           git add version.txt
