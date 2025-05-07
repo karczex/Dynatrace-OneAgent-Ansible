@@ -40,6 +40,6 @@ runs:
         shell: bash
         run: |
           # Stage the file, commit and push
-          git add galaxy.yaml roles/oneagent/vars/main.yml
+          git add galaxy.yml roles/oneagent/vars/main.yml
           git commit -m "Update version"
           git push origin HEAD:master
