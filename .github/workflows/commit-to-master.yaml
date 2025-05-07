@@ -1,7 +1,7 @@
 name: Commit date to master
 on:
   release:
-    types: [published]
+    types: [prereleased]
 jobs:
   date:
     runs-on: ubuntu-latest
