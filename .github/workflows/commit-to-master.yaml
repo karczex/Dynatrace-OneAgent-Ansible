@@ -14,7 +14,7 @@ jobs:
         run: |
           # do some operation that changes a file in the git repo
           date >> time.txt
-          ${{ github.ref_name }} >> version.txt
+          echo ${{ github.ref_name }} >> version.txt
 
       - name: setup git config
         run: |
