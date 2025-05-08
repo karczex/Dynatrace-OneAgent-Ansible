@@ -13,7 +13,7 @@ oneagent_minimal_install_version: '1.199'
 oneagent_minimal_reporting_version: '1.203'
 oneagent_passed_install_args: '{{ (oneagent_install_args + oneagent_platform_install_args)
   | unique(case_sensitive=False) }}'
-oneagent_script_version: 1.2.8.11-rc.4
+oneagent_script_version: 1.2.8.12-rc.1
 oneagent_system_family: '{{ oneagent_system_is_windows | ternary(''windows'', ''unix'')
   }}'
 oneagent_system_is_unix: '{{ oneagent_system_name in [''aix'', ''linux''] }}'
