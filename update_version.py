@@ -1,31 +1,41 @@
 #!/usr/bin/env python3
 import argparse
 import yaml
+import re
+from sys import stderr
 
-def update_version_in_yaml(file_path, version_field_name , version):
-    with open(file_path, 'r') as file:
+official_semver_regex = r"^(0|[1-9]\d*)\.(0|[1-9]\d*)\.(0|[1-9]\d*)(?:-((?:0|[1-9]\d*|\d*[a-zA-Z-][0-9a-zA-Z-]*)(?:\.(?:0|[1-9]\d*|\d*[a-zA-Z-][0-9a-zA-Z-]*))*))?(?:\+([0-9a-zA-Z-]+(?:\.[0-9a-zA-Z-]+)*))?$"
+
+
+def update_version_in_yaml(file_path, version_field_name, version):
+    with open(file_path, "r") as file:
         yaml_data = yaml.safe_load(file)
     yaml_data[version_field_name] = version
-    print(yaml_data[version_field_name])
 
-    with open(file_path, 'w') as file:
-        yaml.safe_dump(yaml_data, file)
+    with open(file_path, "w") as file:
+        yaml.safe_dump(yaml_data, file, sort_keys=False)
+
 
 def update_galaxy_yaml(version):
-    update_version_in_yaml("galaxy.yml", "version" ,version)
+    update_version_in_yaml("galaxy.yml", "version", version)
+
 
 def update_main_yaml(version):
-    update_version_in_yaml("roles/oneagent/vars/main.yml", "oneagent_script_version",  version)
+    update_version_in_yaml("roles/oneagent/vars/main.yml", "oneagent_script_version", version)
+
 
 if __name__ == "__main__":
     parser = argparse.ArgumentParser(
-                    prog='update_version',
-                    description='What the program does',
-                    epilog='Text at the bottom of help')
+        prog="update_version", description="Update version in all needed places across the repository"
+    )
 
-    parser.add_argument('new_version')
+    parser.add_argument("new_version", help="New version in semver format")
     args = parser.parse_args()
-    print(args.new_version)
+
+    is_version_valid = re.match(official_semver_regex, args.new_version)
+    if not is_version_valid:
+        print("Version do not follow semver", file=stderr)
+        exit(1)
+    print(f"Apply new version: {args.new_version}")
     update_galaxy_yaml(args.new_version)
     update_main_yaml(args.new_version)
-
