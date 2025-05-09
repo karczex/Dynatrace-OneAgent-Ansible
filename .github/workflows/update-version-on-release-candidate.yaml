@@ -1,7 +1,11 @@
 name: Commit date to master
 on:
-  release:
-    types: [prereleased]
+  workflow_dispatch:
+    inputs:
+      version:
+        description: 'New version'
+        required: true
+
 jobs:
   date:
     runs-on: ubuntu-latest
@@ -12,3 +16,5 @@ jobs:
 
       - name: Upate version
         uses:  ./.github/actions/update-version
+        with:
+          version: ${{ github.event.inputs.version}}

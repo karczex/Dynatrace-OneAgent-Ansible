@@ -12,22 +12,20 @@
 # See the License for the specific language governing permissions and
 # limitations under the License.
 
-name: "Verify version"
-description: "Verifies version in galaxy.yml and <role_dir>/vars/main against latest tag"
+name: "Update version in all needed files"
+inputs:
+  version:
+    description: "Version to be set"
+    required: true
 
 runs:
   using: composite
   steps:
 
-      - name: save current version
-        shell: bash
-        run: |
-          echo ${{ github.ref_name }} >> version.txt
-
       - name: Update version in files
         shell: bash
         run: |
-          python update_version.py ${{ github.ref_name }}
+          python update_version.py ${{ inputs.version }}
 
       - name: setup git config
         shell: bash
