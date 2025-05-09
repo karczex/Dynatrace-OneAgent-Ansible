@@ -1,24 +1,25 @@
-authors:
-- Dynatrace LLC
-build_ignore:
-- .github
-- .pre-commit-config.yaml
-- .gitignore
-- venv
-description: Module to install and configure Dynatrace OneAgent deployment
-documentation: https://docs.dynatrace.com/docs/setup-and-configuration/dynatrace-oneagent/deployment-orchestration/ansible
-license_file: LICENSE
-name: oneagent
+---
 namespace: dynatrace
+name: oneagent
+version: 1.2.7
 readme: README.md
-repository: https://github.com/Dynatrace/Dynatrace-OneAgent-Ansible
+authors:
+  - Dynatrace LLC
+description: Module to install and configure Dynatrace OneAgent deployment
+license_file: LICENSE
 tags:
-- dynatrace
-- oneagent
-- agent
-- deployment
-- monitoring
-- infrastructure
-- linux
-- windows
-version: 1.2.12-rc.1
+  - dynatrace
+  - oneagent
+  - agent
+  - deployment
+  - monitoring
+  - infrastructure
+  - linux
+  - windows
+repository: https://github.com/Dynatrace/Dynatrace-OneAgent-Ansible
+documentation: https://docs.dynatrace.com/docs/setup-and-configuration/dynatrace-oneagent/deployment-orchestration/ansible
+build_ignore:
+  - .github
+  - .pre-commit-config.yaml
+  - .gitignore
+  - venv
