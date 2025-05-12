@@ -64,9 +64,7 @@ runs:
               echo "PR build failed, please make manual review"
               exit 1
             fi
-            echo "Waiting for CI to pass..."
-            sleep 20
-          done
+            echo "Waiting for CI to pass..."; sleep 20; done
         shell: bash
 
 
