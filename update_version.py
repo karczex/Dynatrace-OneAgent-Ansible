@@ -5,6 +5,8 @@ import re
 import sys
 
 official_semver_regex = r"^(0|[1-9]\d*)\.(0|[1-9]\d*)\.(0|[1-9]\d*)(?:-((?:0|[1-9]\d*|\d*[a-zA-Z-][0-9a-zA-Z-]*)(?:\.(?:0|[1-9]\d*|\d*[a-zA-Z-][0-9a-zA-Z-]*))*))?(?:\+([0-9a-zA-Z-]+(?:\.[0-9a-zA-Z-]+)*))?$"
+galaxy_yml = "galaxy.yml"
+main_yml = "roles/oneagent/vars/main.yml"
 
 
 def update_version_in_yaml(file_path, version_field_name, version):
@@ -17,11 +19,11 @@ def update_version_in_yaml(file_path, version_field_name, version):
 
 
 def update_galaxy_yaml(version):
-    update_version_in_yaml("galaxy.yml", "version", version)
+    update_version_in_yaml(galaxy_yml, "version", version)
 
 
 def update_main_yaml(version):
-    update_version_in_yaml("roles/oneagent/vars/main.yml", "oneagent_script_version", version)
+    update_version_in_yaml(main_yml, "oneagent_script_version", version)
 
 
 if __name__ == "__main__":
