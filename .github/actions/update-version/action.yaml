@@ -40,7 +40,7 @@ runs:
           # Stage the file, commit and push
           git add galaxy.yml roles/oneagent/vars/main.yml
           git commit -m "Update version"
-          git push origin HEAD:master
+          git push origin HEAD:${{inputs.version}}
 
       - name: Create Pull Request
         run: |
