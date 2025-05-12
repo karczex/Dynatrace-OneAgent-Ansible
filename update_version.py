@@ -2,7 +2,7 @@
 import argparse
 import yaml
 import re
-from sys import stderr
+import sys
 
 official_semver_regex = r"^(0|[1-9]\d*)\.(0|[1-9]\d*)\.(0|[1-9]\d*)(?:-((?:0|[1-9]\d*|\d*[a-zA-Z-][0-9a-zA-Z-]*)(?:\.(?:0|[1-9]\d*|\d*[a-zA-Z-][0-9a-zA-Z-]*))*))?(?:\+([0-9a-zA-Z-]+(?:\.[0-9a-zA-Z-]+)*))?$"
 
@@ -34,8 +34,8 @@ if __name__ == "__main__":
 
     is_version_valid = re.match(official_semver_regex, args.new_version)
     if not is_version_valid:
-        print("Version do not follow semver", file=stderr)
-        exit(1)
+        print("Version do not follow semver", file=sys.stderr)
+        sys.exit(1)
     print(f"Apply new version: {args.new_version}")
     update_galaxy_yaml(args.new_version)
     update_main_yaml(args.new_version)
