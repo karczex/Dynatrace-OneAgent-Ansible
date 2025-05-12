@@ -8,6 +8,9 @@ official_semver_regex = r"^(0|[1-9]\d*)\.(0|[1-9]\d*)\.(0|[1-9]\d*)(?:-((?:0|[1-
 galaxy_yml = "galaxy.yml"
 main_yml = "roles/oneagent/vars/main.yml"
 
+class ListIndenter(yaml.Dumper):
+    def increase_indent(self, flow=False, indentless=False):
+        return super(ListIndenter, self).increase_indent(flow, False)
 
 def update_version_in_yaml(file_path, version_field_name, version):
     with open(file_path, "r") as file:
@@ -15,7 +18,7 @@ def update_version_in_yaml(file_path, version_field_name, version):
     yaml_data[version_field_name] = version
 
     with open(file_path, "w") as file:
-        yaml.safe_dump(yaml_data, file, sort_keys=False, explicit_start=True, indent=4, default_flow_style=False)
+        yaml.dump(yaml_data, file, Dumper=ListIndenter, sort_keys=False, explicit_start=True, indent=2, default_flow_style=False)
 
 
 def update_galaxy_yaml(version):
