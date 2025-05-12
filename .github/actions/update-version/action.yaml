@@ -1,0 +1,64 @@
+# Copyright 2024 Dynatrace LLC
+#
+# Licensed under the Apache License, Version 2.0 (the "License");
+# you may not use this file except in compliance with the License.
+# You may obtain a copy of the License at
+#
+# https://www.apache.org/licenses/LICENSE-2.0
+#
+# Unless required by applicable law or agreed to in writing, software
+# distributed under the License is distributed on an "AS IS" BASIS,
+# WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+# See the License for the specific language governing permissions and
+# limitations under the License.
+
+name: "Update version in all needed files"
+inputs:
+  version:
+    description: "Version to be set"
+    required: true
+  gha_token:
+    description: "GHA bot token"
+    required: true
+
+runs:
+  using: composite
+  steps:
+
+      - name: Update version in files
+        shell: bash
+        run: |
+          python $GITHUB_WORKSPACE/.github/actions/update-version/update_version.py ${{ inputs.version }}
+
+      - name: setup git config
+        shell: bash
+        run: |
+          # setup the username and email. I tend to use 'GitHub Actions Bot' with no email by default
+          git config user.name "GitHub Actions Bot"
+          git config user.email "<>"
+
+      - name: commit
+        shell: bash
+        run: |
+          # Stage the file, commit and push
+          git add galaxy.yml roles/oneagent/vars/main.yml
+          git commit -m "Update version"
+          git push origin HEAD:${{inputs.version}}
+
+      - name: Create Pull Request
+        shell: bash
+        run: |
+          curl -X POST -H "Authorization: token ${{ inputs.gha_token }}" -d '{"title":"Version update: ${{ inputs.version }}","head":"${{ inputs.version }}","base":"master"}' https://api.github.com/repos/${{ github.repository }}/pulls
+
+# TODO: Wait on the PR build
+
+      - name: Merge Pull Request
+        shell: bash
+        run: |
+          PR_NUMBER=$(curl -H "Authorization: token ${{ inputs.gha_token }}" https://api.github.com/repos/${{ github.repository }}/pulls?head=${{ inputs.version }} | jq -r '.[0].number')
+          curl -X PUT -H "Authorization: token ${{ inputs.gha_token }}" -d '{"merge_method":"rebase"}' https://api.github.com/repos/${{ github.repository }}/pulls/$PR_NUMBER/merge
+
+      - name: Remove Merged branch
+        shell: bash
+        run: |
+          curl -X DELETE -H "Authorization: token ${{ inputs.gha_token }}" https://api.github.com/repos/OWNER/REPO/git/refs/heads/${{ inputs.version }}

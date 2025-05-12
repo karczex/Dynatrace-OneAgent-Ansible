@@ -12,17 +12,19 @@
 # See the License for the specific language governing permissions and
 # limitations under the License.
 
-name: "Publish to Ansible Galaxy"
-description: Publish to Ansible Galaxy
-
+name: "Make release"
 inputs:
-  ansible-galaxy-api-token:
-    description: Ansible Galaxy API token required for ansible-galaxy client authentication
+  version:
+    description: "Version to be set"
+    required: true
+  gha_token:
+    description: "GHA bot token"
     required: true
 
 runs:
   using: composite
   steps:
-    - name: "Publish the Ansible collection"
+    - name: Create Release
       shell: bash
-      run: ansible-galaxy collection publish dynatrace-oneagent* --token ${{ inputs.ansible-galaxy-api-token }}
+      run: |
+        curl -X POST -H "Authorization: token ${{ inputs.gha_token }}" -d '{"tag_name": "${{ inputs.version }}","name": "${{ inputs.version }}", "draft":false, "prerelease":false}' https://api.github.com/repos/${{ github.repository }}/releases
