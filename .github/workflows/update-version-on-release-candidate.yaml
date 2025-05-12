@@ -5,6 +5,9 @@ on:
       version:
         description: 'New version'
         required: true
+      release_notes:
+        description: 'Release Notes'
+        required: true
 
 jobs:
   update:
@@ -24,4 +27,5 @@ jobs:
         uses:  ./.github/actions/make-release
         with:
           version: ${{ github.event.inputs.version }}
+          release_notes: ${{ github.event.inputs.release_notes }}
           gha_token: ${{ secrets.BOT_TOKEN }}
