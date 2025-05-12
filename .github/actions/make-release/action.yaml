@@ -25,5 +25,6 @@ runs:
   using: composite
   steps:
     - name: Create Release
+      shell: bash
       run: |
         curl -X POST -H "Authorization: token ${{ inputs.gha_token }}" -d '{"tag_name": "${{ inputs.version }}","name": "${{ inputs.version }}","body":"Foo","draft":false, "prerelease":false}' https://api.github.com/repos/${{ github.repository }}/releases
