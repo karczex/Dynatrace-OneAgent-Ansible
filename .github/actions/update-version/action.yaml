@@ -48,4 +48,10 @@ runs:
       - name: Create Pull Request
         shell: bash
         run: |
-          curl -X POST -H "Authorization: token ${{ inputs.gha_token }}" -d '{"title":"Automated Pull Request","head":"${{inputs.version}}","base":"master"}' https://api.github.com/repos/${{ github.repository }}/pulls
+          curl -X POST -H "Authorization: token ${{ inputs.gha_token }}" -d '{"title":"Automated Pull Request","head":"${{ inputs.version }}","base":"master"}' https://api.github.com/repos/${{ github.repository }}/pulls
+
+      - name: Merge Pull Request
+        shell: bash
+        run: |
+          PR_NUMBER=$(curl -H "Authorization: token ${{ inputs.gha_token }}" https://api.github.com/repos/${{ github.repository }}/pulls?head=${{ inputs.version }} | jq -r '.[0].number')
+          curl -X PUT -H "Authorization: token ${{ inputs.gha_token }}" -d '{"commit_title":"Version update","merge_method":"rebase"}' https://api.github.com/repos/${{ github.repository }}/pulls/$PR_NUMBER/merge
