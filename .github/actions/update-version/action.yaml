@@ -17,6 +17,9 @@ inputs:
   version:
     description: "Version to be set"
     required: true
+  gha_token:
+    description: "GHA bot token"
+    required: true
 
 runs:
   using: composite
@@ -45,5 +48,5 @@ runs:
       - name: Create Pull Request
         shell: bash
         run: |
-          PR_URL=$(curl -X POST -H "Authorization: token ${{ secrets.BOT_TOKEN }}" -d '{"title":"Automated Pull Request","head":"${{inputs.version}}","base":"main"}' https://api.github.com/repos/${{ github.repository }}/pulls | jq -r '.html_url')
+          PR_URL=$(curl -X POST -H "Authorization: token ${{ inputs.gha_token }}" -d '{"title":"Automated Pull Request","head":"${{inputs.version}}","base":"main"}' https://api.github.com/repos/${{ github.repository }}/pulls | jq -r '.html_url')
           echo "Pull Request created: $PR_URL"
