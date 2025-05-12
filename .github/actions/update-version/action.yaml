@@ -53,8 +53,8 @@ runs:
       - name: Wait for tests
         run: |
           PR_NUMBER=$(curl -H "Authorization: token ${{ inputs.gha_token }}" https://api.github.com/repos/${{ github.repository }}/pulls?head=${{ inputs.version }} | jq -r '.[0].number')
-          for i in ${seq 1 20}; do
-            STATUS=$(curl -H "Authorization: token ${{ inputs.gha_token }}" https://api.github.com/repos/${{ github.repository }}/pulls/$PR_NUMBER/status | jq -r '.state'
+          while true; do
+            STATUS=$(curl -H "Authorization: token ${{ inputs.gha_token }}" https://api.github.com/repos/${{ github.repository }}/pulls/$PR_NUMBER/status | jq -r '.state')
             if [ STATUS == "success" ]; then
               echo "PR build succeded"
               break;
@@ -67,7 +67,6 @@ runs:
             sleep 20
           done
         shell: bash
-
 
       - name: Merge Pull Request
         shell: bash
