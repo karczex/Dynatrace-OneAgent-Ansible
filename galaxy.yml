@@ -1,25 +1,25 @@
 ---
 namespace: dynatrace
 name: oneagent
-version: 1.2.7
+version: 1.2.18
 readme: README.md
 authors:
-  - Dynatrace LLC
+- Dynatrace LLC
 description: Module to install and configure Dynatrace OneAgent deployment
 license_file: LICENSE
 tags:
-  - dynatrace
-  - oneagent
-  - agent
-  - deployment
-  - monitoring
-  - infrastructure
-  - linux
-  - windows
+- dynatrace
+- oneagent
+- agent
+- deployment
+- monitoring
+- infrastructure
+- linux
+- windows
 repository: https://github.com/Dynatrace/Dynatrace-OneAgent-Ansible
 documentation: https://docs.dynatrace.com/docs/setup-and-configuration/dynatrace-oneagent/deployment-orchestration/ansible
 build_ignore:
-  - .github
-  - .pre-commit-config.yaml
-  - .gitignore
-  - venv
+- .github
+- .pre-commit-config.yaml
+- .gitignore
+- venv
