@@ -17,6 +17,8 @@ inputs:
   version:
     description: "Version to be set"
     required: true
+  release_notes:
+    description: 'Release Notes'
   gha_token:
     description: "GHA bot token"
     required: true
@@ -27,4 +29,4 @@ runs:
     - name: Create Release
       shell: bash
       run: |
-        curl -X POST -H "Authorization: token ${{ inputs.gha_token }}" -d '{"tag_name": "${{ inputs.version }}","name": "${{ inputs.version }}","body":"Foo","draft":false, "prerelease":false}' https://api.github.com/repos/${{ github.repository }}/releases
+        curl -X POST -H "Authorization: token ${{ inputs.gha_token }}" -d '{"tag_name": "${{ inputs.version }}","name": "${{ inputs.version }}","body":"${{ inputs.release_notes }}","draft":false, "prerelease":false}' https://api.github.com/repos/${{ github.repository }}/releases
