@@ -28,7 +28,7 @@ runs:
       - name: Update version in files
         shell: bash
         run: |
-          python $GITHUB_WORKSPACE/.github/actions/update_version/update_version.py ${{ inputs.version }}
+          python $GITHUB_WORKSPACE/.github/actions/update-version/update_version.py ${{ inputs.version }}
 
       - name: setup git config
         shell: bash
