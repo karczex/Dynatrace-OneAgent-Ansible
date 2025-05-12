@@ -1,4 +1,4 @@
-name: Commit date to master
+name: Update version
 on:
   workflow_dispatch:
     inputs:
