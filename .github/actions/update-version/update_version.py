@@ -15,7 +15,7 @@ def update_version_in_yaml(file_path, version_field_name, version):
     yaml_data[version_field_name] = version
 
     with open(file_path, "w") as file:
-        yaml.safe_dump(yaml_data, file, sort_keys=False, explicit_start=True)
+        yaml.safe_dump(yaml_data, file, sort_keys=False, explicit_start=True, indent=4)
 
 
 def update_galaxy_yaml(version):
