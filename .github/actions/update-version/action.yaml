@@ -48,5 +48,4 @@ runs:
       - name: Create Pull Request
         shell: bash
         run: |
-          PR_URL=$(curl -X POST -H "Authorization: token ${{ inputs.gha_token }}" -d '{"title":"Automated Pull Request","head":"${{inputs.version}}","base":"main"}' https://api.github.com/repos/${{ github.repository }}/pulls | jq -r '.html_url')
-          echo "Pull Request created: $PR_URL"
+          curl -X POST -H "Authorization: token ${{ inputs.gha_token }}" -d '{"title":"Automated Pull Request","head":"${{inputs.version}}","base":"master"}' https://api.github.com/repos/${{ github.repository }}/pulls
