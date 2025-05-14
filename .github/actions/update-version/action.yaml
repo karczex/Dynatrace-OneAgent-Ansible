@@ -60,11 +60,11 @@ runs:
         shell: bash
         run: |
           until gh pr checks "${{ inputs.version }}" --watch; do
-            echo "Waiting for PR build to start"
+            echo "Waiting for PR build to start..."
             sleep 10
           done
           if [[ $(gh pr list --head 1.2.48 --json statusCheckRollup --jq '.[].statusCheckRollup[].conclusion!="SUCCESS"') != "true" ]]; then
-            exit(1)
+            exit 1
           fi
         env:
           GH_TOKEN: ${{ inputs.gha_token }}
