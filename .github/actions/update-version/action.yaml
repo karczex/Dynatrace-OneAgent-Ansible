@@ -24,11 +24,20 @@ inputs:
 runs:
   using: composite
   steps:
-
+      - name: Install git-conventional-commits
+        shell: bash
+        run: |
+          npm i git-conventional-commits
+      
       - name: Update version in files
         shell: bash
         run: |
           python $GITHUB_WORKSPACE/.github/actions/update-version/update_version.py ${{ inputs.version }}
+
+      - name: Generate changelog
+        shell: bash
+        run: |
+          npx git-conventional-commits changelog --file CHANGELOG.md --release ${{ inputs.version }}
 
       - name: setup git config
         shell: bash
@@ -41,7 +50,7 @@ runs:
         shell: bash
         run: |
           # Stage the file, commit and push
-          git add galaxy.yml roles/oneagent/vars/main.yml
+          git add galaxy.yml roles/oneagent/vars/main.yml CHANGELOG.md
           git commit -m "Update version"
           git push origin HEAD:${{ inputs.version }}
 
