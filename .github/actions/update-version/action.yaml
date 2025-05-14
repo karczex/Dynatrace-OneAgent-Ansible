@@ -59,7 +59,7 @@ runs:
       - name: Wait for PR build
         shell: bash
         run: |
-          until gh pr checks "${{ inputs.version }} --watch; do
+          until gh pr checks "${{ inputs.version }}" --watch; do
             echo "Waiting for PR build to start"
             sleep 10
           done
