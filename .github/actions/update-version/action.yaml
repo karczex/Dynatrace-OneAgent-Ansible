@@ -56,7 +56,7 @@ runs:
         env:
           GH_TOKEN: ${{ inputs.gha_token }}
 
-      - name: Wait for PR build
+      - name: Wait for Pull Request build
         shell: bash
         run: |
           until gh pr checks "${{ inputs.version }}" --watch; do
@@ -72,6 +72,6 @@ runs:
       - name: Merge Pull Request
         shell: bash
         run: |
-          gh pr "${{ inputs.version }}" --rebase --delete-branch
+          gh pr merge "${{ inputs.version }}" --rebase --delete-branch
         env:
           GH_TOKEN: ${{ inputs.gha_token }}
