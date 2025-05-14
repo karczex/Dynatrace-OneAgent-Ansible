@@ -17,6 +17,9 @@ inputs:
   version:
     description: "Version to be set"
     required: true
+  gha_token:
+    descrition: "GHA bot token"
+    required: true
 
 runs:
   using: composite
@@ -26,4 +29,4 @@ runs:
       run: |
         gh release create ${{ inputs.version }}
       env:
-        GH_TOKEN: ${{ secrets.BOT_TOKEN }}
+        GH_TOKEN: ${{ inputs.gha_token }}
