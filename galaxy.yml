@@ -1,7 +1,7 @@
 ---
 namespace: dynatrace
 name: oneagent
-version: 1.2.61
+version: 1.2.63
 readme: README.md
 authors:
   - Dynatrace LLC
