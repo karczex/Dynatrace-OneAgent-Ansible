@@ -17,9 +17,6 @@ inputs:
   version:
     description: "Version to be set"
     required: true
-  gha_token:
-    description: "GHA bot token"
-    required: true
 
 runs:
   using: composite
@@ -27,4 +24,4 @@ runs:
     - name: Create Release
       shell: bash
       run: |
-        curl -X POST -H "Authorization: token ${{ inputs.gha_token }}" -d '{"tag_name": "${{ inputs.version }}","name": "${{ inputs.version }}", "draft":false, "prerelease":false}' https://api.github.com/repos/${{ github.repository }}/releases
+        gh release create ${{ inputs.version }}
