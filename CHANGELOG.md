@@ -1,3 +1,11 @@
+## **1.2.66**&emsp;<sub><sup>2025-05-14 (20e499de8a4c0dff4c3eee2c3c8093132b5a1e4b...d8e1984b55e33af17e206b478c8b59e29b374cf3)</sup></sub>
+
+### Features
+
+- fake commit \+1 (d8e1984b55e33af17e206b478c8b59e29b374cf3)
+
+<br>
+
 ## **1.2.63**&emsp;<sub><sup>2025-05-14 (36eae88e568b537ed190381df37d3b554d52761c...36eae88e568b537ed190381df37d3b554d52761c)</sup></sub>
 
 *no relevant changes*
