@@ -25,3 +25,5 @@ runs:
       shell: bash
       run: |
         gh release create ${{ inputs.version }}
+      env:
+        GH_TOKEN: ${{ secrets.BOT_TOKEN }}
