@@ -52,6 +52,7 @@ runs:
           while [[ $(gh pr list --head "${{ inputs.version }}" --json "title" --jq 'length!=0') != "true" ]]; do
             echo "Waiting for PR..."
             sleep 10
+          done
         env:
           GH_TOKEN: ${{ inputs.gha_token }}
 
