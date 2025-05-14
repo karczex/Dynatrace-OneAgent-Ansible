@@ -21,9 +21,6 @@ inputs:
     description: "GHA bot token"
     required: true
 
-env:
-  GH_TOKEN: ${{ inputs.gha_token }}
-
 runs:
   using: composite
   steps:
@@ -46,19 +43,25 @@ runs:
           # Stage the file, commit and push
           git add galaxy.yml roles/oneagent/vars/main.yml
           git commit -m "Update version"
-          git push origin HEAD:${{inputs.version}}
+          git push origin HEAD:${{ inputs.version }}
 
       - name: Create Pull Request
         shell: bash
         run: |
           gh pr create --title "Version update: ${{ inputs.version }}" --head "${{ inputs.version }}" --base "master
+        env:
+          GH_TOKEN: ${{ inputs.gha_token }}
 
-      - name: wait for PR build
+      - name: Wait for PR build
         shell: bash
         run: |
           gh pr checks "${{ inputs.version }}" --watch
+        env:
+          GH_TOKEN: ${{ inputs.gha_token }}
 
       - name: Merge Pull Request
         shell: bash
         run: |
           gh pr "${{ inputs.version }}" --rebase --delete-branch
+        env:
+          GH_TOKEN: ${{ inputs.gha_token }}

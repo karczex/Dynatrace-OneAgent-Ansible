@@ -21,8 +21,6 @@ inputs:
     descrition: "GHA bot token"
     required: true
 
-env:
-  GH_TOKEN: ${{ inputs.gha_token }}
 runs:
   using: composite
   steps:
@@ -30,3 +28,5 @@ runs:
       shell: bash
       run: |
         gh release create ${{ inputs.version }}
+      env:
+        GH_TOKEN: ${{ inputs.gha_token }}
