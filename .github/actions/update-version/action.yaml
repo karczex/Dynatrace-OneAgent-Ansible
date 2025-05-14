@@ -21,6 +21,9 @@ inputs:
     description: "GHA bot token"
     required: true
 
+env:
+  GH_TOKEN: ${{ inputs.gha_token }}
+
 runs:
   using: composite
   steps:
@@ -48,17 +51,14 @@ runs:
       - name: Create Pull Request
         shell: bash
         run: |
-          curl -X POST -H "Authorization: token ${{ inputs.gha_token }}" -d '{"title":"Version update: ${{ inputs.version }}","head":"${{ inputs.version }}","base":"master"}' https://api.github.com/repos/${{ github.repository }}/pulls
+          gh pr create --title "Version update: ${{ inputs.version }}" --head "${{ inputs.version }}" --base "master
 
-# TODO: Wait on the PR build
+      - name: wait for PR build
+        shell: bash
+        run: |
+          gh pr checks "${{ inputs.version }}" --watch
 
       - name: Merge Pull Request
         shell: bash
         run: |
-          PR_NUMBER=$(curl -H "Authorization: token ${{ inputs.gha_token }}" https://api.github.com/repos/${{ github.repository }}/pulls?head=${{ inputs.version }} | jq -r '.[0].number')
-          curl -X PUT -H "Authorization: token ${{ inputs.gha_token }}" -d '{"merge_method":"rebase"}' https://api.github.com/repos/${{ github.repository }}/pulls/$PR_NUMBER/merge
-
-      - name: Remove Merged branch
-        shell: bash
-        run: |
-          curl -X DELETE -H "Authorization: token ${{ inputs.gha_token }}" https://api.github.com/repos/OWNER/REPO/git/refs/heads/${{ inputs.version }}
+          gh pr "${{ inputs.version }}" --rebase --delete-branch
