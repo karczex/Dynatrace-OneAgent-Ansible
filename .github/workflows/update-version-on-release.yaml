@@ -13,6 +13,7 @@ jobs:
       # Checkout the branch
       - name: checkout
         uses: actions/checkout@v2
+        fetch-tags: true
 
       - name: Upate version
         uses:  ./.github/actions/update-version
