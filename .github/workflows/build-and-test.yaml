@@ -19,17 +19,29 @@ on:
   workflow_call:
 
 jobs:
+  get-ansible-versions:
+    uses: ./.github/workflows/get-ansible-versions.yaml
+
   build-and-test:
+    needs: get-ansible-versions
     runs-on: ubuntu-latest
+    strategy:
+      matrix:
+        ansible-version: ${{ fromJson(needs.get-ansible-versions.outputs.supported_ansible_versions) }}
+    name: build-and-test with ansible ${{ matrix.ansible-version }}
     steps:
       - uses: actions/checkout@v4
       - name: Set environment variables
         uses: ./.github/actions/set-environment-variables
       - name: Set up environment
-        uses: ./.github/actions/setup-build-environment
+        uses: ./.github/actions/set-up-build-environment
+        with:
+          ansible-version: ${{ matrix.ansible-version }}
       - name: Build the collection
         uses: ./.github/actions/build-collection
       - name: Run sanity tests
         uses: ./.github/actions/run-sanity-and-linter-tests
       - name: Run component tests
         uses: ./.github/actions/run-component-tests
+        with:
+          ansible-version: ${{ matrix.ansible-version }}
