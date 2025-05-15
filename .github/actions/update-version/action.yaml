@@ -58,7 +58,7 @@ runs:
         shell: bash
         run: |
           gh pr create --title "Version update: ${{ inputs.version }}" --body "" --head "${{ inputs.version }}" --base "master"
-          while [[ $(gh pr list --head "${{ inputs.version }}" --json "title" --jq 'length!=0') != "true" ]]; do
+          while [[ $(gh pr list --head "${{ inputs.version }}" --json "title" --jq 'length==0') == "true" ]]; do
             echo "Waiting for PR..."
             sleep 10
           done
@@ -68,11 +68,13 @@ runs:
       - name: Wait for Pull Request build
         shell: bash
         run: |
-          until gh pr checks "${{ inputs.version }}" --watch; do
+          while [[ $(gh pr list --head ${{ inputs.version }} --json statusCheckRollup --jq 'length==0') == "true" ]]
             echo "Waiting for PR build to start..."
             sleep 10
           done
-          if [[ $(gh pr list --head 1.2.48 --json statusCheckRollup --jq '.[].statusCheckRollup[].conclusion!="SUCCESS"') != "true" ]]; then
+          gh pr checks "${{ inputs.version }}" --watch --fail-fast
+          if [[ $(gh pr list --head ${{ inputs.version }} --json statusCheckRollup --jq '.[].statusCheckRollup[].conclusion=="SUCCESS"') == "false" ]]; then
+            echo "PR build failed"
             exit 1
           fi
         env:
