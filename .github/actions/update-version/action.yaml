@@ -28,7 +28,7 @@ runs:
         shell: bash
         run: |
           npm i git-conventional-commits
-      
+
       - name: Update version in files
         shell: bash
         run: |
@@ -69,7 +69,7 @@ runs:
         shell: bash
         run: |
           PR_BUILD_STATUS=""
-          until [[ "${PR_BUILD_STATUS}" == "SUCCESS" || "${PR_BUILD_STATUS}" == "FAILED" ]]; do
+          until [[ "${PR_BUILD_STATUS}" == "SUCCESS" || "${PR_BUILD_STATUS}" == "FAILURE" ]]; do
             PR_BUILD_STATUS=$(gh pr list --head ${{ inputs.version }} --json statusCheckRollup --jq '.[].statusCheckRollup[].conclusion')
             echo "$ Waiting for PR build to finish..."
             sleep 10
