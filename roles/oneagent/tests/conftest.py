@@ -26,7 +26,6 @@ from tests.deployment.deployment_platform import (
     DeploymentPlatform,
     DeploymentResult,
     PlatformCollection,
-)
 from tests.deployment.installer_fetching import (
     download_installers,
     download_signature,
