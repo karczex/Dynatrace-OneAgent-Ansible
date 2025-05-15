@@ -72,7 +72,7 @@ runs:
             echo "Waiting for PR build to start..."
             sleep 10
           done
-          gh pr checks "${{ inputs.version }}" --watch --fail-fast
+          gh pr checks "${{ inputs.version }}" --watch
           if [[ $(gh pr list --head ${{ inputs.version }} --json statusCheckRollup --jq '.[].statusCheckRollup[].conclusion=="SUCCESS"') == "false" ]]; then
             echo "PR build failed"
             exit 1
