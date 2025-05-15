@@ -74,11 +74,10 @@ runs:
             echo "$ Waiting for PR build to finish..."
             sleep 10
           done
-          if [[ "${PR_BUILD_STATUS}" == "FAILED" ]]; then
-             echo "PR build failed"
+          echo "PR build status: ${PR_BUILD_STATUS}"
+          if [[ "${PR_BUILD_STATUS}" == "FAILURE" ]]; then
              exit 1
           fi
-          echo "PR build succeded"
         env:
           GH_TOKEN: ${{ inputs.gha_token }}
 
