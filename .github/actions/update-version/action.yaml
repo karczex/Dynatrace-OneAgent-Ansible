@@ -68,15 +68,16 @@ runs:
       - name: Wait for Pull Request build
         shell: bash
         run: |
-          while [[ $(gh pr list --head ${{ inputs.version }} --json statusCheckRollup --jq 'length==0') == "true" ]]; do
-            echo "Waiting for PR build to start..."
+          PR_BUILD_STATUS=""
+          while [[ "${PR_BUILD_STATUS}" != "SUCCESS" || "${PR_BUILD_STATUS}" != "FAILED" ]]; do
+            PR_BUILD_STATUS=$(gh pr list --head ${{ inputs.version }} --json statusCheckRollup --jq '.[].statusCheckRollup[].conclusion')
+            echo "Waiting for PR build to finish..."
+            if [[ "${PR_BUILD_STATUS}" == "FAILED" ]]; then
+              echo "PR build failed"
+              exit 1
+            fi
             sleep 10
           done
-          gh pr checks "${{ inputs.version }}" --watch
-          if [[ $(gh pr list --head ${{ inputs.version }} --json statusCheckRollup --jq '.[].statusCheckRollup[].conclusion=="SUCCESS"') == "false" ]]; then
-            echo "PR build failed"
-            exit 1
-          fi
         env:
           GH_TOKEN: ${{ inputs.gha_token }}
 
