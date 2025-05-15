@@ -68,7 +68,7 @@ runs:
       - name: Wait for Pull Request build
         shell: bash
         run: |
-          while [[ $(gh pr list --head ${{ inputs.version }} --json statusCheckRollup --jq 'length==0') == "true" ]]
+          while [[ $(gh pr list --head ${{ inputs.version }} --json statusCheckRollup --jq 'length==0') == "true" ]]; do
             echo "Waiting for PR build to start..."
             sleep 10
           done
