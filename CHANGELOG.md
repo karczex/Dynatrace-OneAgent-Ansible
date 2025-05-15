@@ -1,3 +1,15 @@
+## **1.2.75**&emsp;<sub><sup>2025-05-15 (8ce02ac14a7973f9662c1a66430216021c50a309...597c30f7824d37478415f0baa21c6d55f26abed8)</sup></sub>
+
+### Features
+
+- break the build (8ce02ac14a7973f9662c1a66430216021c50a309)
+
+### Bug Fixes
+
+- fix status (597c30f7824d37478415f0baa21c6d55f26abed8)
+
+<br>
+
 ## **1.2.73**&emsp;<sub><sup>2025-05-15 (eb243d5bf2eccc55538613cc62ea798cd4fa2808...b347e3c6b656985292b7190aff13e74dd9c93e43)</sup></sub>
 
 ### Features
