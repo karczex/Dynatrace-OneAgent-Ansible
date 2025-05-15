@@ -1,3 +1,11 @@
+## **1.2.77**&emsp;<sub><sup>2025-05-15 (080f3580cc98db89fcbec3b5d2ccb5dbdea780de...080f3580cc98db89fcbec3b5d2ccb5dbdea780de)</sup></sub>
+
+### Bug Fixes
+
+- fix status (080f3580cc98db89fcbec3b5d2ccb5dbdea780de)
+
+<br>
+
 ## **1.2.75**&emsp;<sub><sup>2025-05-15 (8ce02ac14a7973f9662c1a66430216021c50a309...597c30f7824d37478415f0baa21c6d55f26abed8)</sup></sub>
 
 ### Features
