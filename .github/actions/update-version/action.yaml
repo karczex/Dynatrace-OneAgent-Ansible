@@ -50,7 +50,7 @@ runs:
         shell: bash
         run: |
           # Stage the file, commit and push
-          git add galaxy.yml roles/oneagent/vars/main.yml CHANGELOG.md
+          git add galaxy.yml roles/oneagent/vars/version.yml CHANGELOG.md
           git commit -m "Update version"
           git push origin HEAD:${{ inputs.version }}
 
