@@ -26,4 +26,4 @@ jobs:
         uses:  ./.github/actions/make-release
         with:
           version: ${{ github.event.inputs.version }}
-          gha_token: ${{ secrets.BOT_TOKEN }}
+          gha_token: ${{ secrets.GITHUB_TOKEN }}
