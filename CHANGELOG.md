@@ -1,3 +1,11 @@
+## **1.2.95**&emsp;<sub><sup>2025-05-20 (a4cf560038f1d1c9af16215bb2492db55194df00...a4cf560038f1d1c9af16215bb2492db55194df00)</sup></sub>
+
+### Bug Fixes
+
+- Extend demo chapter in README (a4cf560038f1d1c9af16215bb2492db55194df00)
+
+<br>
+
 ## **1.2.90**&emsp;<sub><sup>2025-05-20 (f903c8f0f8156ebfeb82a7c1638e5d94d085e47b...1c96035ad7b9f0d2a15641ac5b86c561b51ebaad)</sup></sub>
 
 ### Features
