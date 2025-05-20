@@ -1,3 +1,11 @@
+## **1.2.90**&emsp;<sub><sup>2025-05-20 (f903c8f0f8156ebfeb82a7c1638e5d94d085e47b...1c96035ad7b9f0d2a15641ac5b86c561b51ebaad)</sup></sub>
+
+### Features
+
+- Demo feature (1c96035ad7b9f0d2a15641ac5b86c561b51ebaad)
+
+<br>
+
 ## [1.2.4] - 2025-04-30
 - Added parameter `oneagent_no_log` controlling Ansible no_log attribute
 
