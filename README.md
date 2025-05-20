@@ -2,6 +2,7 @@
 
 * foo
 * bar
+* baz
 
 # Dynatrace OneAgent Ansible collection
 
