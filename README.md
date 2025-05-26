@@ -1,11 +1,12 @@
+# Test Chapter
+
+lorem ipsum
+lorem ipsum
+lorem ipsum
+
 # Dynatrace OneAgent Ansible collection
 
 Ansible collection for deploying Dynatrace OneAgent.
-
-## Description
-
-The Dynatrace OneAgent Ansible collection consists of a single role that handles the installation and
-configuration of OneAgent, ensuring the OneAgent service remains in a running state.
 
 ## Requirements
 
