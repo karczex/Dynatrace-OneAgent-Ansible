@@ -18,39 +18,20 @@ on:
     types: [released]
 
 jobs:
-  get-ansible-versions:
-    uses: ./.github/workflows/get-ansible-versions.yaml
-
   build-and-test:
     runs-on: ubuntu-latest
-    strategy:
-      matrix:
-        ansible-version: ${{ fromJson(needs.get-ansible-versions.outputs.supported_ansible_versions) }}
-    steps:
-      - uses: actions/checkout@v4
-        with:
-          fetch-depth: 0
-      - name: Set environment variables
-        uses: ./.github/actions/set-environment-variables
-      - name: Verify version
-        uses: ./.github/actions/verify-version
-      - name: Set up environment
-        uses: ./.github/actions/set-up-build-environment
-        with:
-          ansible-version: ${{ matrix.ansible-version }}
-      - name: Build the collection
-        uses: ./.github/actions/build-collection
-      - name: Run sanity tests
-        uses: ./.github/actions/run-sanity-and-linter-tests
-      - name: Run component tests
-        uses: ./.github/actions/run-component-tests
-        with:
-          ansible-version: ${{ matrix.ansible-version }}
+    uses: ./.github/workflows/build-and-test.yaml
+
   publish:
     needs: build-and-test
-    uses: ansible/team-devtools/.github/workflows/release_collection.yml@main
-    with:
-      environment: release
-    secrets:
-        ah_token: ${{ secrets.AH_TOKEN }}
-        ansible_galaxy_api_key: ${{ secrets.ANSIBLE_GALAXY_API_KEY }}
+    runs-on: ubuntu-latest
+    steps:
+     - name: Download the collection
+       uses: ./.github/actions/download-collection
+     - name: Publish to AutomationHub and Ansible Galaxy 
+       uses: ansible/team-devtools/.github/workflows/release_collection.yml@main
+       with:
+         environment: release
+       secrets:
+           ah_token: ${{ secrets.AH_TOKEN }}
+           ansible_galaxy_api_key: ${{ secrets.ANSIBLE_GALAXY_API_KEY }}
