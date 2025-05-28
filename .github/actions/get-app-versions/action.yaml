@@ -25,7 +25,7 @@ outputs:
     value: ${{ steps.get-app-versions.outputs.supported_versions }}
   latest_version:
     description: "Latest supported version"
-    value: ${{ steps.get-app-versions.outputs.latest_ansible_version }}
+    value: ${{ steps.get-app-versions.outputs.latest_version }}
 
 runs:
   using: composite
