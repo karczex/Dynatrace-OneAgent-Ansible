@@ -53,7 +53,6 @@ jobs:
     strategy:
       matrix:
           ansible-version: ${{ fromJson(needs.get-ansible-versions.outputs.supported_ansible_versions) }}
-      name: test with ansible ${{ matrix.ansible-version }}
     steps:
       - name: Download the collection
         uses: ./.github/actions/download-collection
