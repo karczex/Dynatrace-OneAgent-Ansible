@@ -49,6 +49,9 @@ jobs:
           ansible-version: ${{ fromJson(needs.get-ansible-versions.outputs.supported_ansible_versions) }}
     steps:
       - uses: actions/checkout@v4
+        uses: ./.github/actions/set-up-build-environment
+        with:
+          ansible-version: ${{ matrix.ansible-version }}
       - name: Download the collection
         uses: ./.github/actions/download-collection
       - name: Run sanity tests
