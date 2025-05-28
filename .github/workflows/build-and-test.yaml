@@ -50,7 +50,6 @@ jobs:
   test:
     needs: [get-ansible-versions, build]
     runs-on: ubuntu-latest
-    name: build-and-test with ansible ${{ matrix.ansible-version }}
     strategy:
       matrix:
           ansible-version: ${{ fromJson(needs.get-ansible-versions.outputs.supported_ansible_versions) }}
