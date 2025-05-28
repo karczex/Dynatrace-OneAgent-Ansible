@@ -30,6 +30,11 @@ jobs:
     name: build with ansible ${{ needs.get-ansible-versions.outputs.latest_ansible_version }}
     steps:
       - uses: actions/checkout@v4
+      - name: debug
+        shell: bash
+        run: |
+          echo "${{ needs.get-ansible-versions.outputs.latest_ansible_version }}"
+          echo "${{ needs.get-ansible-versions.outputs.supported_ansible_versions }}"
       - name: Set environment variables
         uses: ./.github/actions/set-environment-variables
       - name: Set up environment
