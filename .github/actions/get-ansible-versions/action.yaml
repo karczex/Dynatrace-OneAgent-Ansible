@@ -1,0 +1,15 @@
+name: Get Ansible Versions
+
+outputs:
+  supported_ansible_versions: ${{ steps.foo.outputs.supported_versions }}
+  latest_ansible_version: ${{ steps.foo.outputs.latest_version }}
+
+runs:
+  steps:
+    - uses: actions/checkout@v4
+    - name: Get Ansible versions
+      id: foo
+      uses: ./.github/actions/get-app-versions
+      with:
+        app: ansible
+

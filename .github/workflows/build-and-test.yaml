@@ -21,13 +21,14 @@ on:
     branches: ["master"]
 
 jobs:
-  get-ansible-versions:
-    uses: ./.github/workflows/get-ansible-versions.yaml
+  fetch-ansible-versions:
+    name: "Fetch Ansible versions"
+    uses: ./.github/actions/get-ansible-versions
 
   build:
     needs: get-ansible-versions
     runs-on: ubuntu-latest
-    name: build with ansible ${{ needs.get-ansible-versions.outputs.latest_ansible_version }}
+    name: Build with ansible ${{ needs.get-ansible-versions.outputs.latest_ansible_version }}
     steps:
       - uses: actions/checkout@v4
       - name: Set environment variables
@@ -42,6 +43,7 @@ jobs:
         uses: ./.github/actions/upload-collection
 
   test:
+    name: Test with Ansible ${{ matrix.ansible-version }}
     needs: [get-ansible-versions, build]
     runs-on: ubuntu-latest
     strategy:
