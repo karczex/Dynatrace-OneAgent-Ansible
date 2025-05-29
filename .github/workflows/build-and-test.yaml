@@ -25,6 +25,7 @@ jobs:
     runs-on: ubuntu-latest
     name: "Fetch Ansible versions"
     steps:
+      - uses: actions/checkout@v4
       - uses: ./.github/actions/get-ansible-versions
 
   build:
