@@ -21,7 +21,8 @@ on:
     branches: ["master"]
 
 jobs:
-  fetch-ansible-versions:
+  fetch-ansible-versions:  
+    runs-on: ubuntu-latest
     name: "Fetch Ansible versions"
     steps:
       - uses: ./.github/actions/get-ansible-versions
