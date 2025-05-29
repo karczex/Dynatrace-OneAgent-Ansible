@@ -28,7 +28,7 @@ jobs:
       - uses: ./.github/actions/get-ansible-versions
 
   build:
-    needs: get-ansible-versions
+    needs: fetch-ansible-versions
     runs-on: ubuntu-latest
     name: Build with ansible ${{ needs.get-ansible-versions.outputs.latest_ansible_version }}
     steps:
@@ -46,7 +46,7 @@ jobs:
 
   test:
     name: Test with Ansible ${{ matrix.ansible-version }}
-    needs: [get-ansible-versions, build]
+    needs: [fetch-ansible-versions, build]
     runs-on: ubuntu-latest
     strategy:
       matrix:
