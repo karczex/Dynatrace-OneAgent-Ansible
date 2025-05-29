@@ -23,7 +23,8 @@ on:
 jobs:
   fetch-ansible-versions:
     name: "Fetch Ansible versions"
-    uses: ./.github/actions/get-ansible-versions
+    steps:
+      - uses: ./.github/actions/get-ansible-versions
 
   build:
     needs: get-ansible-versions
