@@ -30,7 +30,7 @@ jobs:
   build:
     needs: fetch-ansible-versions
     runs-on: ubuntu-latest
-    name: Build with ansible ${{ needs.get-ansible-versions.outputs.latest_ansible_version }}
+    name: Build with ansible ${{ needs.fetch-ansible-versions.outputs.latest_ansible_version }}
     steps:
       - uses: actions/checkout@v4
       - name: Set environment variables
@@ -38,7 +38,7 @@ jobs:
       - name: Set up environment
         uses: ./.github/actions/set-up-build-environment
         with:
-          ansible-version: ${{ needs.get-ansible-versions.outputs.latest_ansible_version }}
+          ansible-version: ${{ needs.fetch-ansible-versions.outputs.latest_ansible_version }}
       - name: Build the collection
         uses: ./.github/actions/build-collection
       - name: Upload the collection
@@ -50,7 +50,7 @@ jobs:
     runs-on: ubuntu-latest
     strategy:
       matrix:
-          ansible-version: ${{ fromJson(needs.get-ansible-versions.outputs.supported_ansible_versions) }}
+          ansible-version: ${{ fromJson(needs.fetch-ansible-versions.outputs.supported_ansible_versions) }}
     steps:
       - uses: actions/checkout@v4
       - name: Set environment variables
