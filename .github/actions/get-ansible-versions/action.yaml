@@ -1,8 +1,12 @@
 name: Get Ansible Versions
 
 outputs:
-  supported_ansible_versions: ${{ steps.foo.outputs.supported_versions }}
-  latest_ansible_version: ${{ steps.foo.outputs.latest_version }}
+  supported_ansible_versions:
+    description: "List of supported Ansible versions"
+    value: ${{ steps.foo.outputs.supported_versions }}
+  latest_ansible_version:
+    description: "Latest Ansible version"
+    value: ${{ steps.foo.outputs.latest_version }}
 
 runs:
   using: "composite"
