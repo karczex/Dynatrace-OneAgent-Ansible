@@ -24,9 +24,13 @@ jobs:
   fetch-ansible-versions:  
     runs-on: ubuntu-latest
     name: "Fetch Ansible versions"
+    outputs:
+        supported_ansible_versions: ${{ steps.v.outputs.supported_ansible_versions }}
+        latest_ansible_version : ${{ steps.v.outputs.latest_ansible_version }}
     steps:
       - uses: actions/checkout@v4
       - uses: ./.github/actions/get-ansible-versions
+        id: v
 
   build:
     needs: fetch-ansible-versions
