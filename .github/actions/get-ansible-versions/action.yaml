@@ -1,5 +1,7 @@
 name: Get Ansible Versions
 
+description: "Fetches supported and latest Ansible versions"
+
 outputs:
   supported_ansible_versions:
     description: "List of supported Ansible versions"
@@ -17,4 +19,6 @@ runs:
       uses: ./.github/actions/get-app-versions
       with:
         app: ansible
-    - run: echo "Supported - ${{ steps.get.outputs.supported_versions }}"
+    - name: "debug"
+      shell: bash
+      run: echo "Supported - ${{ steps.get.outputs.supported_versions }}"
