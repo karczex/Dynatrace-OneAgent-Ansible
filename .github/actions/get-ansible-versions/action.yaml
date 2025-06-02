@@ -18,8 +18,3 @@ runs:
       uses: ./.github/actions/get-app-versions
       with:
         app: ansible
-    - name: "info"
-      shell: bash
-      run: |
-        echo "Supported - ${{ steps.get.outputs.supported_versions }}"
-        echo "Latest - ${{ steps.get.outputs.latest_version }}
