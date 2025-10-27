@@ -1,3 +1,11 @@
+## **1.2.108**&emsp;<sub><sup>2025-10-27 (a41aaf7b5a330d318fa8259e93ce4f9cc910dc7e...a41aaf7b5a330d318fa8259e93ce4f9cc910dc7e)</sup></sub>
+
+### Bug Fixes
+
+- fix unsafe variable interpolation (a41aaf7b5a330d318fa8259e93ce4f9cc910dc7e)
+
+<br>
+
 ## **1.2.102**&emsp;<sub><sup>2025-05-23 (f903c8f0f8156ebfeb82a7c1638e5d94d085e47b...5cb5d4e8f19b78ac717485b0a708e6d1b9b2bb56)</sup></sub>
 
 ### Features
