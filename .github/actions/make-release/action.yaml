@@ -32,7 +32,9 @@ runs:
     - name: Generate changelog
       shell: bash
       run: |
-        npx git-conventional-commits changelog --file github-release-changelog.md --release ${{ inputs.version }}
+        npx git-conventional-commits changelog --file github-release-changelog.md --release "$VERSION"
+      env:
+        VERSION: ${{ inputs.version }}
 
     - name: Make release
       shell: bash
