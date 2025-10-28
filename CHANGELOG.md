@@ -1,3 +1,11 @@
+## **1.2.111**&emsp;<sub><sup>2025-10-23 (c3f5cb087b17c00310922bbb27e319b3d7a7b250...15eea446421ab55f3a5ea3a331e53d1475a5efbd)</sup></sub>
+
+### Features
+
+- Add check for latest OneAgent version before download (f4f3ce8cdcab04c077ed9924ae54fbbe65a0bc5e)
+
+<br>
+
 ## **1.2.105**&emsp;<sub><sup>2025-10-27 (434128c88dc0f72c32b9d58439fdf88bf097a759...434128c88dc0f72c32b9d58439fdf88bf097a759)</sup></sub>
 
 ### Bug Fixes
