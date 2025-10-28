@@ -55,7 +55,7 @@ runs:
         run: |
           # Stage the file, commit and push
           git add galaxy.yml roles/oneagent/vars/version.yml CHANGELOG.md
-          git commit -m "Update version"
+          git commit -m "chore: Update version"
           git push origin HEAD:"$VERSION"
         env:
           VERSION: ${{ inputs.version }}
