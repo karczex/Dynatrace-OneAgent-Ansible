@@ -1,3 +1,18 @@
+## **1.2.112**&emsp;<sub><sup>2025-10-28 (c3f5cb087b17c00310922bbb27e319b3d7a7b250...97e2ae73a3d069c0cd1165cb01013e93770d7a29)</sup></sub>
+
+### Features
+
+- Add check for latest OneAgent version before download (f4f3ce8cdcab04c077ed9924ae54fbbe65a0bc5e)
+
+### Bug Fixes
+
+- fix broken conditionals \(\#105\) (c4f3a29df777ca5149ff2d70c07b370dd79ce039)
+- fix unsafe variable interpolation (ba18c2cf2cbe919ba5bbdf8c3e4ebfcc487bcfc1)
+- fix commit message for automatic version bump (f17b0b74bcbfed5cc8f5b9df988c4aecaca08b5c)
+- fix pr builds check (97e2ae73a3d069c0cd1165cb01013e93770d7a29)
+
+<br>
+
 ## **1.2.105**&emsp;<sub><sup>2025-10-27 (434128c88dc0f72c32b9d58439fdf88bf097a759...434128c88dc0f72c32b9d58439fdf88bf097a759)</sup></sub>
 
 ### Bug Fixes
